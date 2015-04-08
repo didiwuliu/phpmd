@@ -24,6 +24,14 @@
             <fileset dir="${vendor.dir}/pdepend">
                 <exclude name="pdepend/src/main/**" />
             </fileset>
+            <fileset dir="${vendor.dir}/symfony">
+                <include name="**/Tests/**" />
+            </fileset>
+            <fileset dir="${vendor.dir}/phpdocumentor" />
+            <fileset dir="${vendor.dir}/phpspec" />
+            <fileset dir="${vendor.dir}/phpunit" />
+            <fileset dir="${vendor.dir}/sebastian" />
+            <fileset dir="${vendor.dir}/squizlabs" />
         </delete>
     </target>
 
@@ -83,8 +91,9 @@
             <arg line="cd '${project.web.release.dir}/..' ; rm latest ; ln -s '${project.version}' latest" />
         </exec>
 
-        <antcall target="site:deploy"
-                 inheritAll="false" />
+        <exec dir="${basedir}" executable="ant" failonerror="true">
+            <arg line="site:deploy" />
+        </exec>
     </target>
 
 </project>
